@@ -1,7 +1,7 @@
 ﻿#include "myalloc.h"
 
 int main(void){
-    void *p, *q, *r, *s;
+    /*void *p, *q, *r, *s;
 
     p = myalloc(10); print_data();
     q = myalloc(20); print_data();
@@ -11,5 +11,5 @@ int main(void){
     myfree(q); print_data();
     myfree(p); print_data();
     myfree(s); print_data();
-    myfree(r); print_data();
+    myfree(r); print_data();*/
 }
