@@ -67,25 +67,23 @@ void myfree(void *p){
 
 void merge_free(){
   struct block *current = heap;
-  //struct block *prev = NULL;
   struct block *next = NULL;
 
-
   while(current->next != NULL){
-    if(current->in_use){
-      //next node
-    }else{
+    //if current is not in use check next node for merging, else get next
+    if(!current->in_use){
+      //get next and check it before utilizing it
       next = current->next;
       if(!next->in_use){
         int merge_size = current->size + next->size + PADDED_SIZE(sizeof(struct block));
         //get the furtherest chained free node
-        while(next->next != NULL && !next->next->in_use){//dangerous short circuit logic
+        while(next->next != NULL && !next->next->in_use){//short circuit logic
           next = next->next;
           merge_size += next->size + PADDED_SIZE(sizeof(struct block));
         }
         //preform merge
         current->size = merge_size;
-        if(next->next != NULL){//only re-link the current->next if next is not the end
+        if(next->next != NULL){//only re-link the current->next if next is not the end of the list
           current->next = next->next;
         }else{
           current->next = NULL;
